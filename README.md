@@ -11,11 +11,13 @@ Then use your phone to go to the address shown in `inet`: `192.168.43.44:5000/vo
 
 ## API
 
+```javascript
     function send_event(data_object) {
         if (CONNECTED) {
             socket.emit('phone_event', data_object);
         }
     }
+```
 
 Bread and butter function. Here's what it looks like:
 
