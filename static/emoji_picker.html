@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="/css/emoji_chooser.css">
+<link rel="stylesheet" href="/css/nav.css">
+
+<div class = 'row nav'>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/crop_tool.html">📸</a>
+  </div>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/volume_control.html">🔈</a>
+  </div>
+  <div class = 'col-xs-3 nav-item active'>
+    <a href="./emoji_picker.html">😀</a>
+  </div>
+  <div class = 'col-xs-3 nav-item '>
+    <a href="./canvas.html">🖍</a>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class="col-xs-4">
+  <button onclick="unicode_press('1f600')">😀</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="unicode_press('1f601')">😂</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="unicode_press('1f609')">😉</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class="col-xs-6">
+  <button onclick="unicode_press('1f44d')">👍</button>
+  </div>
+    <div class="col-xs-6">
+  <button onclick="unicode_press('1f4a9')">💩</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class = 'col-xs-3'>
+    <button onclick = 'unicode_press("1f648")'>🙈</button>
+  </div>
+  <div class = 'col-xs-3'>
+    <button onclick = 'unicode_press("1f596")'>🖖</button>
+  </div>
+  <div class = 'col-xs-6'>
+    <button onclick = 'unicode_press("1f494")'>💔</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class = 'col-xs-8'>
+    <button onclick = 'unicode_press("1f4ac")'>💬</button>
+  </div>
+  <div class = 'col-xs-4'>
+    <button onclick = 'unicode_press("1f4ac")'>💬</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class = 'col-xs-12'>
+    <button onclick = 'unicode_press("1f4ac")'>💬</button>
+  </div>
+</div>
+
+<script>
+
+  function componentToHex(c) {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+  }
+
+  function rgbToHex(r, g, b) {
+      return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  }
+</script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/phone.js"></script>
+
+
+
+

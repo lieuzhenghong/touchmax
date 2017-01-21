@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="/css/volume_control_style.css">
+<link rel="stylesheet" href="/css/nav.css">
+
+<div class = 'row nav'>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/crop_tool.html">📸</a>
+  </div>
+  <div class = 'col-xs-3 nav-item active'>
+    <a href="/volume_control.html">🔈</a>
+  </div>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/emoji_picker.html">😀</a>
+  </div>
+  <div class = 'col-xs-3 nav-item '>
+    <a href="/canvas.html">🖍</a>
+  </div>
+</div>
+
+<div class = "row vertical-input">
+  <div class = 'col-xs-12'>
+    <input name = 'volume' type="range" oninput="
+    document.getElementById('vol').value = this.value;
+    send_event({action: 'run_program', string: `amixer -D pulse set Master ${this.value}%`})
+    ")/>
+    <output for="volume" id='vol'></div>
+</div>
+
+<div class = 'row bottom-bar'>
+  <div class="col-xs-4">
+  <button onclick="send_event({action: 'run_program', string: 'amixer -D pulse set Master toggle'})">🔇</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="unicode_press('23f8')">⏸</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="unicode_press('25b6')">▶</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/phone.js"></script>
+
+
+
+

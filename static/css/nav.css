@@ -1,0 +1,19 @@
+.nav {
+    text-align: center;
+    display: flex;
+}
+
+.nav a {
+    font-size: 36px;
+    text-decoration: none;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(200, 200, 200, 1);
+}
+
+.active {
+    background-color: rgba(255, 255, 255, 1);
+}

@@ -1,0 +1,25 @@
+{
+"screen": {
+    "rows" : [],
+    "elems": []
+},
+
+row {
+    elem
+    elem
+    elem
+}
+
+"elem0" : {
+    "type":
+    "text":
+    "image":
+    "onclick":
+}
+
+input1 {
+    text:
+    oninput:
+}
+
+}

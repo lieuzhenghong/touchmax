@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet'href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.css">
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="/css/nav.css">
+
+<style>
+/* Limit image width to avoid overflow the container */
+body {
+  background-color: rgba(80, 80, 80, 1);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.image {
+  flex: 1;
+  max-height: 100%;
+}
+
+button {
+  font-size: 48px;
+  width: 100%;
+}
+img {
+  max-width: 100%; /* This rule is very important, please do not ignore this! */
+  max-height: 100%;
+}
+</style>
+
+<body>
+ <div class = 'row image'>
+   <div class='col-xs-10' id = "image-64">
+      <img id="image" src="picture.jpg">
+    </div>
+  <div class="col-xs-2">
+    <button onclick="send_event({
+      action: 'run_program', 
+      string: 'gnome-screenshot -f ./static/ss.png', 
+      then: true 
+      })">📸</button>
+    <button onclick="send_image()">➡</button>
+  </div>
+</div>
+
+<div class = 'row nav'>
+  <div class = 'col-xs-3 nav-item active'>
+    <a href="/crop_tool.html">📸</a>
+  </div>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/volume_control.html">🔈</a>
+  </div>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/emoji_picker.html">😀</a>
+  </div>
+  <div class = 'col-xs-3 nav-item '>
+    <a href="/canvas.html">🖍</a>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/phone.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
+
+<script>
+
+var image = document.getElementById('image');
+var cropper = new Cropper(image, {
+  responsive: true,
+  background: false,
+  crop: function(e) {
+    console.log(e.detail.x);
+    console.log(e.detail.y);
+    console.log(e.detail.width);
+    console.log(e.detail.height);
+    console.log(e.detail.rotate);
+    console.log(e.detail.scaleX);
+    console.log(e.detail.scaleY);
+  }
+});
+
+socket.on('image', (image) => {
+  console.log('receiving image');
+  console.log(image);
+  // Remove placeholder image
+  var img = new Image();
+  img.id = 'image';
+  img.src = 'data:image/jpeg;base64,' + image.buffer;
+  console.log(img);
+  cropper.replace(img.src);
+})
+
+
+function send_image() {
+  cropper.getCroppedCanvas().toBlob((blob) => {
+    send_event({
+      action: 'send_image',
+      string: blob
+    })
+  })
+}
+</script>
+
+
+
+

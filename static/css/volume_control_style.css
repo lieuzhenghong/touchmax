@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    font-size: 72px;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: rgba(80,80,80,1);
+}
+
+.vertical-input {
+    flex: 1;
+}
+
+output {
+    color: rgba(200, 200, 200, 0.9);
+}
+
+button {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+input[type=range] {
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+  border: none;
+  transform: rotate(-90deg);
+  margin-top: 50%;
+}

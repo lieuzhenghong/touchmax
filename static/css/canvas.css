@@ -1,0 +1,42 @@
+body {
+  font-size: 48px;
+}
+
+body {
+  background-color: rgba(80,80,80,1);
+}
+button {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+}
+input[type=range] {
+  width: 100%; /* Specific width is required for Firefox. */
+  border-radius: 20px;
+  border: none;
+  background: transparent;
+}
+
+input[type=range]::-moz-range-track {
+  background: linear-gradient(to right,hsl(0,100%,50%),hsl(60,100%,50%),hsl(120,100%,50%),hsl(180,100%,50%),hsl(240,100%,50%),hsl(300,100%,50%),hsl(360,100%,50%));
+}
+
+input[type=range]::-webkit-slider-thumb {
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+} 
+
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
