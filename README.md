@@ -26,29 +26,35 @@ Bread and butter function. Here's what it looks like:
 
 Optional `then` attribute:
 
+```javascript
     send_event({
         action: 'key_press',
         string: 'tab',
         then: ['control', 'shift']
-    }) 
+    })
+```
 
 `then` will be called like this:
 
+```javascript
     if (data.then === undefined) {
       function_list[data.action](data.string); 
     }
     else {
       function_list[data.action](data.string, data.then);
     }
+```
 
 `then` is basically additional parameters.
 
 Current function list:
 
+```javascript
     function_list = {
-    'unicode_press': unicode_press,
-    'key_press': key_press,
-    'mouse_move': mouse_move,
-    'run_program': run_program,
-    'send_image': receive_image
+        'unicode_press': unicode_press,
+        'key_press': key_press,
+        'mouse_move': mouse_move,
+        'run_program': run_program,
+        'send_image': receive_image
     }
+```
