@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
 <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -8,11 +8,19 @@
 <link rel="stylesheet" href="/css/nav.css">
 
 <style>
-  body {}
     canvas {
         background-color: white;
     }
+    /*
+    #alley {
+      background-image: url('./assets/alley_arrow.jpeg');
+      background-repeat: repeat-y;
+      background-size: 100% auto;
+    }
+    */
 </style>
+
+<body>
 
 <div class = 'row nav'>
   <div class = 'col-xs-3 nav-item'>
@@ -29,7 +37,13 @@
   </div>
 </div>
 
-<canvas id="canvas" width="400px" height="400px"></canvas>
+<div class = 'row' >
+  <div class = 'col-xs-10'>
+    <canvas id="canvas" width="300px" height="400px"></canvas>
+  </div>
+  <div class = 'col-xs-2' id='alley'>
+  </div>
+</div>
 
 <div class = 'row'>
   <div class = 'col-xs-2'>
@@ -64,8 +78,9 @@
 <script src="./hammer.min.js"></script>
 
 <script>
-var hammertime = new Hammer(document.getElementById('canvas'));
-hammertime.get('swipe').set({pointers: 2, direction: Hammer.DIRECTION_VERTICAL });
+var hammertime = new Hammer(document.getElementById('alley'));
+console.log(hammertime);
+hammertime.get('swipe').set({pointers: 1, direction: Hammer.DIRECTION_VERTICAL, threshold: 5, velocity: 0.1});
 
 hammertime.on('swipe', (ev) => {
   send_image();

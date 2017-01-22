@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no maximum-scale=1">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
 <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -23,7 +23,8 @@ body {
 }
 
 button {
-  font-size: 48px;
+  text-align: center;
+  font-size: 36px;
   width: 100%;
 }
 img {
@@ -37,7 +38,7 @@ img {
    <div class='col-xs-10' id = "image-64">
       <img id="image" src="/assets/placeholder.jpg">
     </div>
-  <div class="col-xs-2">
+  <div class="col-xs-2" id = "alley">
     <button onclick="send_event({
       action: 'run_program', 
       string: 'gnome-screenshot -f ./static/ss.png', 
@@ -65,6 +66,17 @@ img {
 <script src="/socket.io/socket.io.js"></script>
 <script src="/phone.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
+
+<script src="./hammer.min.js"></script>
+
+<script>
+var hammertime = new Hammer(document.getElementById('alley'));
+hammertime.get('swipe').set({pointers: 1, direction: Hammer.DIRECTION_VERTICAL });
+
+hammertime.on('swipe', (ev) => {
+  send_image();
+})
+</script>
 
 <script>
 
