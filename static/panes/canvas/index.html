@@ -61,7 +61,16 @@
   }
 </script>
 
+<script src="./hammer.min.js"></script>
+
 <script>
+var hammertime = new Hammer(document.getElementById('canvas'));
+hammertime.get('swipe').set({pointers: 2, direction: Hammer.DIRECTION_VERTICAL });
+
+hammertime.on('swipe', (ev) => {
+  send_image();
+})
+
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
 
@@ -70,6 +79,7 @@
   var mousePos = { x:0, y:0 };
   var lastPos = mousePos;
   canvas.addEventListener("mousedown", function (e) {
+    console.log(e);
     drawing = true;
     lastPos = getMousePos(canvas, e);
   }, false);
@@ -120,13 +130,16 @@
   // Set up touch events for mobile, etc
   canvas.addEventListener("touchstart", function (e) {
     console.log('touchstart');
-    mousePos = getTouchPos(canvas, e);
-    var touch = e.touches[0];
-    var mouseEvent = new MouseEvent("mousedown", {
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    });
-    canvas.dispatchEvent(mouseEvent);
+
+    if (e.touches.length === 1) {
+      mousePos = getTouchPos(canvas, e);
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }
   }, false);
   canvas.addEventListener("touchend", function (e) {
     var mouseEvent = new MouseEvent("mouseup", {});

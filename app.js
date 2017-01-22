@@ -56,9 +56,11 @@ function run_program(program_string, then) {
 function receive_image(blob) {
   console.log('received image');
   console.log(blob);
-  fs.writeFile(__dirname + '/static/ss', blob, () => {
-    spawn('xdg-open ' + __dirname + '/static/ss');
-  })
+  fs.unlink((__dirname + '/static/ss.png'), () => {
+    fs.writeFile(__dirname + '/static/ss.png', blob, () => {
+      spawn('xdg-open ' + __dirname + '/static/ss.png');
+    })
+  });
 }
 
 function_list = {
