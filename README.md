@@ -1,5 +1,20 @@
-# touchmax
-A library that lets you control your computer with your phone Touch Bar style.
+# touchable
+A library that lets you control your computer with your phone.
+Custom, programmable widgets allow you to:
+
+- Run any shell command with nodejs's `spawn`;
+- Send any series of keypresses and mouse movements;
+- Send binary data, images, etc;
+- Access and modify the clipboard.
+
+I have personally used it as:
+
+- Programmable audio mixer;
+- Take and crop screenshots;
+- Rudimentary drawing app;
+- Custom emoji keyboard;
+- Calculator with bigger buttons;
+- Many more possibilities.
 
 ## Set up
 Make sure that you have node installed.
@@ -7,7 +22,7 @@ Make sure that you have node installed.
     sudo node app.js
     ifconfig
 
-Then use your phone to go to the address shown in `inet`: `192.168.43.44:5000/volume_control.html` for example.
+Then use your phone to go to the address shown in `inet` and the correct pane: `192.168.43.44:5000/panes/volume_control/` for example.
 
 ## API
 
@@ -57,6 +72,7 @@ Current function list:
         'key_press': key_press,
         'mouse_move': mouse_move,
         'run_program': run_program,
-        'send_image': receive_image
+        'send_image': receive_image,
+        'send_clipboard': receive_clipboard
     }
 ```

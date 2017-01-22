@@ -1,9 +1,10 @@
 body {
   font-size: 48px;
-  background-color: rgba(80,80,80,1);
+  background-color: rgba(255,255,255,1);
 }
 
 button {
+  border:0;
   text-align: center;
   width: 100%;
   height: 90px;
@@ -17,5 +18,5 @@ input[type=text] {
 }
 
 #alley {
-  background-color: red;
+  background-color:rgba(100,100,100,1);
 }

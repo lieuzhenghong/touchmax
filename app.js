@@ -67,7 +67,9 @@ function receive_clipboard(string) {
   console.log(string);
   spawn(`echo "${string}" > tmp`, () => {
     spawn(`cat tmp | xclip -i -selection clipboard`, () => {
-      fs.unlink((__dirname + '/tmp'));
+      fs.unlink((__dirname + '/tmp'), ()=> {
+        
+      });
     });
   })
 }
