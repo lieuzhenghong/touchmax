@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href= './style.css'>
+
+
+<div class = 'row nav'>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/panes/crop_tool">📸</a>
+  </div>
+  <div class = 'col-xs-3 nav-item'>
+    <a href="/panes/volume_control">🔈</a>
+  </div>
+  <div class = 'col-xs-3 nav-item active'>
+    <a href="/panes/emoji_picker">😀</a>
+  </div>
+  <div class = 'col-xs-3 nav-item '>
+    <a href="/panes/canvas">🖍</a>
+  </div>
+</div>
+
+<div class = 'wrapper row'>
+
+<div class = 'col1 col-xs-10'>
+<div class = 'row'>
+  <div class = 'col-xs-12'>
+    <input type='text' id = 'calc'></input>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class="col-xs-4">
+  <button onclick="add(1)">1</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(2)">2</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(3)">3</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class="col-xs-4">
+  <button onclick="add(4)">4</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(5)">5</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(6)">6</button>
+  </div>
+</div>
+
+
+<div class = 'row'>
+  <div class="col-xs-4">
+  <button onclick="add(7)">7</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(8)">8</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(9)">9</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class="col-xs-4">
+  <button onclick="add('+')">+</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add(0)">0</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add('-')">-</button>
+  </div>
+</div>
+
+<div class = 'row'>
+  <div class="col-xs-4">
+  <button onclick="add('*')">×</button>
+  </div>
+  <div class="col-xs-4">
+  <button onclick="compute()">=</button>
+  </div>
+  <div class="col-xs-4">
+    <button onclick="add('/')">÷</button>
+  </div>
+</div>
+
+</div>
+
+
+<div id = 'alley' class="col-xs-2 col2">
+
+</div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/phone.js"></script>
+
+<script>
+  var calcstring = '';
+  function add(string) {
+    console.log(string);
+    calcstring = calcstring.concat(string);
+    document.getElementById('calc').value=calcstring;
+  }
+  function compute(){
+    calcstring = eval(calcstring).toString();
+    document.getElementById('calc').value=calcstring;
+  }
+  function submit() {
+    send_event({action: 'send_clipboard', string: document.getElementById('calc').value.toString()})
+  }
+</script>
+
+<script src="./hammer.min.js"></script>
+
+<script>
+var hammertime = new Hammer(document.getElementById('alley'));
+console.log(hammertime);
+hammertime.get('swipe').set({pointers: 1, direction: Hammer.DIRECTION_VERTICAL, threshold: 5, velocity: 0.1});
+
+hammertime.on('swipe', (ev) => {
+  submit();
+});
+</script>
+
+
+
+

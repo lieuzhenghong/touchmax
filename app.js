@@ -63,12 +63,22 @@ function receive_image(blob) {
   });
 }
 
+function receive_clipboard(string) {
+  console.log(string);
+  spawn(`echo "${string}" > tmp`, () => {
+    spawn(`cat tmp | xclip -i -selection clipboard`, () => {
+      fs.unlink((__dirname + 'tmp'));
+    });
+  })
+}
+
 function_list = {
   'unicode_press': unicode_press,
   'key_press': key_press,
   'mouse_move': mouse_move,
   'run_program': run_program,
-  'send_image': receive_image
+  'send_image': receive_image,
+  'send_clipboard': receive_clipboard
 }
 
 app.use(express.static('static'));
@@ -85,6 +95,7 @@ io.on('connection', function (socket) {
     console.log(data);
 
     if (data.then === undefined) {
+      console.log(function_list[data.action]);
       function_list[data.action](data.string); 
     }
     else {
