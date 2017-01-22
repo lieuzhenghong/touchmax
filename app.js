@@ -14,7 +14,7 @@ function unicode_press(key_string) {
     if (typeof(key_string) === 'string') {
       robot.keyTap('u', ['control', 'shift']);
       robot.typeString(key_string);
-      robot.keyTap('enter');
+      robot.keyTap('space');
     }
 
     else {
@@ -58,7 +58,10 @@ function receive_image(blob) {
   console.log(blob);
   fs.unlink((__dirname + '/static/ss.png'), () => {
     fs.writeFile(__dirname + '/static/ss.png', blob, () => {
-      spawn('xdg-open ' + __dirname + '/static/ss.png');
+      spawn ('xclip -selection clipboard -t image/png "' + __dirname + '/static/ss.png"', () => {
+        spawn('xdg-open ' + __dirname + '/static/ss.png', () => {
+        });
+      })
     })
   });
 }
@@ -67,11 +70,11 @@ function receive_clipboard(string) {
   console.log(string);
   spawn(`echo "${string}" > tmp`, () => {
     spawn(`cat tmp | xclip -i -selection clipboard`, () => {
+      robot.keyTap('v', 'control');
       fs.unlink((__dirname + '/tmp'), ()=> {
-        
-      });
+        });
+      } )
     });
-  })
 }
 
 function_list = {
