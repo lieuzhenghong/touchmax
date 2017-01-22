@@ -1,16 +1,12 @@
 body {
-  font-size: 72px;
-}
-
-body {
+  font-size: 48px;
   background-color: rgba(80,80,80,1);
 }
+
 button {
-  padding: 0;
-  margin: 0;
   text-align: center;
   width: 100%;
-  height: 100px;
+  height: 90px;
 }
 input[type=text] {
   width: 100%;
