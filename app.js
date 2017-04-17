@@ -59,8 +59,8 @@ function receive_image(blob) {
   fs.unlink((__dirname + '/static/ss.png'), () => {
     fs.writeFile(__dirname + '/static/ss.png', blob, () => {
       spawn ('xclip -selection clipboard -t image/png "' + __dirname + '/static/ss.png"', () => {
-        spawn('xdg-open ' + __dirname + '/static/ss.png', () => {
-        });
+        //spawn('xdg-open ' + __dirname + '/static/ss.png', () => {
+        //});
       })
     })
   });
