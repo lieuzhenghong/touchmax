@@ -5,16 +5,12 @@
     "flexboxgrid": "^6.3.1",
     "normalize.css": "^5.0.0",
     "rangeslider.js": "^2.3.0",
-    "robotjs": "^0.4.5",
-    "socket.io": "^1.7.2"
+    "robotjs": "^0.4.7",
+    "socket.io": "^1.7.3"
   },
   "name": "touchmax",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {
-    "robotjs": "^0.4.7",
-    "socket.io": "^1.7.3"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

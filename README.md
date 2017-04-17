@@ -17,8 +17,10 @@ I have personally used it as:
 - Many more possibilities.
 
 ## Set up
-Make sure that you have node installed.
+Make sure that you have node and npm installed.
 
+    git clone https://github.com/lieuzhenghong/touchmax.git
+    npm i 
     sudo node app.js
     ifconfig
 
